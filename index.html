@@ -1,23 +1,133 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Simulasi Caesar Chiper</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  
-  <body>
-    <h2>Simulasi Caesar Chiper</h2>
-    <p>deskripsi singkat</p>
-    <div>
-      <input type="text" id="teks" placeholder="Masukkan teks">
-    </div>
-    <div>
-      <input type="number" id="key" placeholder="Geser (contoh: 3)">
-    </div>
+<head>
+    <title>Caesar Cipher</title>
+
+    <!-- CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            margin: 5px;
+            width: 250px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #hasil {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <h2>Caesar Cipher</h2>
+
+    <input type="text" id="teks" placeholder="Masukkan teks"><br><br>
+
+    <input type="number" id="key" placeholder="Shift (contoh: 3)"><br><br>
+
     <button onclick="enkripsi()">Enkripsi</button>
-    <button onclick="deskripsi()">Deskripsi</button>
-    <div>
-      <p>Hasil: <span id="hasil"></span></p>
-    </div>
-  </body>
+    <button onclick="dekripsi()">Dekripsi</button>
+
+    <p>Hasil: <span id="hasil"></span></p>
+</div>
+
+<!-- JavaScript -->
+<script>
+function enkripsi() {
+    let teks = document.getElementById("teks").value;
+    let shift = parseInt(document.getElementById("key").value);
+
+    if (isNaN(shift)) {
+        alert("Masukkan angka untuk shift!");
+        return;
+    }
+
+    let hasil = "";
+
+    for (let i = 0; i < teks.length; i++) {
+        let char = teks[i];
+
+        if (char.match(/[a-z]/i)) {
+            let code = teks.charCodeAt(i);
+
+            if (code >= 65 && code <= 90) {
+                char = String.fromCharCode((code - 65 + shift) % 26 + 65);
+            } else if (code >= 97 && code <= 122) {
+                char = String.fromCharCode((code - 97 + shift) % 26 + 97);
+            }
+        }
+
+        hasil += char;
+    }
+
+    document.getElementById("hasil").innerText = hasil;
+}
+
+function dekripsi() {
+    let teks = document.getElementById("teks").value;
+    let shift = parseInt(document.getElementById("key").value);
+
+    if (isNaN(shift)) {
+        alert("Masukkan angka untuk shift!");
+        return;
+    }
+
+    let hasil = "";
+
+    for (let i = 0; i < teks.length; i++) {
+        let char = teks[i];
+
+        if (char.match(/[a-z]/i)) {
+            let code = teks.charCodeAt(i);
+
+            if (code >= 65 && code <= 90) {
+                char = String.fromCharCode((code - 65 - shift + 26) % 26 + 65);
+            } else if (code >= 97 && code <= 122) {
+                char = String.fromCharCode((code - 97 - shift + 26) % 26 + 97);
+            }
+        }
+
+        hasil += char;
+    }
+
+    document.getElementById("hasil").innerText = hasil;
+}
+</script>
+
+</body>
 </html>
