@@ -4,51 +4,7 @@
     <title>Caesar Cipher</title>
 
     <!-- CSS -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            text-align: center;
-        }
-
-        input {
-            padding: 10px;
-            margin: 5px;
-            width: 250px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-        }
-
-        button {
-            padding: 10px 15px;
-            margin: 5px;
-            border: none;
-            border-radius: 8px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        #hasil {
-            font-weight: bold;
-            color: #333;
-        }
-    </style>
+    <style rel="stylesheet" href="style.css"></style>
 
 </head>
 <body>
@@ -67,58 +23,6 @@
 </div>
 
 <!-- JavaScript -->
-<script>
-function enkripsi() {
-    let teks = document.getElementById("teks").value.toUpperCase();
-    let k = parseInt(document.getElementById("key").value);
-
-    if (isNaN(k)) {
-        alert("Masukkan angka untuk shift!");
-        return;
-    }
-
-    let hasil = "";
-
-    for (let i = 0; i < teks.length; i++) {
-        let char = teks[i];
-
-        if (char >= 'A' && char <= 'Z') {
-            let x = char.charCodeAt(0) - 65;   // A=0
-            let enc = (x + k) % 26;           // Z_26
-            hasil += String.fromCharCode(enc + 65);
-        } else {
-            hasil += char; // spasi/simbol tetap
-        }
-    }
-
-    document.getElementById("hasil").innerText = hasil;
-}
-
-function dekripsi() {
-    let teks = document.getElementById("teks").value.toUpperCase();
-    let k = parseInt(document.getElementById("key").value);
-
-    if (isNaN(k)) {
-        alert("Masukkan angka untuk shift!");
-        return;
-    }
-
-    let hasil = "";
-
-    for (let i = 0; i < teks.length; i++) {
-        let char = teks[i];
-
-        if (char >= 'A' && char <= 'Z') {
-            let x = char.charCodeAt(0) - 65;
-            let dec = (x - k + 26) % 26;   // penting +26 biar tidak negatif
-            hasil += String.fromCharCode(dec + 65);
-        } else {
-            hasil += char;
-        }
-    }
-
-    document.getElementById("hasil").innerText = hasil;
-}
-</script>
+<script scr="script.js"></script>
 </body>
 </html>
